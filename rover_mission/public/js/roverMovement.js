@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function moveRover(newPos, actualPos) {
         try {
             actualPos = document.getElementById(actualPos.join(','));
+            destination = newPos;
             newPos = document.getElementById(newPos.join(','));
             let rover = actualPos.innerHTML;
-    
+            
+            console.log(destination);
+            
             if (!newPos.classList.contains("obstacle")) {
                 actualPos.innerHTML = "";
                 newPos.innerHTML = rover;

@@ -77,7 +77,7 @@
                                                     if(rand(1,200) < 20){
                                                         echo "<td class='obstacle min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'>";
                                                         ?>
-                                                        <img id="rover" src="{{ asset('images/stone.png') }}" alt="Mars Rover">
+                                                        <img src="{{ asset('images/stone.png') }}" alt="Mars Rover">
                                                         <?php
                                                         echo "</td>";
                                                     }else{
