@@ -27,11 +27,13 @@
                                 for ($x = 1; $x <= 200; $x++) {
                                     if([$y,$x] == [1,1]){
                                         echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>";
-                                        echo "<p id='rover'>V</p>";
+                                        echo "<p id='rover' class=''>V</p>";
                                         echo "</td>";
                                     }else{
-                                        if(rand(1,200) < 25){
-                                            echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>X</td>";
+                                        if(rand(1,200) < 20){
+                                            echo "<td class='obstacle min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>";
+                                            echo "<p>X</p>";
+                                            echo "</td>";
                                         }else{
                                             echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'></td>";
                                         }

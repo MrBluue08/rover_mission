@@ -1,38 +1,39 @@
-var direction = "S";
-var newPos = [1,1];
-var actualPos = [1,1];
-
-function moveRover(newPos, actualPos){
-    actualPos = document.getElementById(actualPos.join(','));
-    newPos = document.getElementById(newPos.join(','));
-    
-    let rover = actualPos.innerHTML;
-    
-    actualPos.innerHTML = "";
-    
-    newPos.innerHTML = rover;
-    
-    rotateRover();
-    return newPos.id.split(',');
-}
-
-function rotateRover(){
-    rover.setAttribute('class', '')
-    switch (direction){
-        case "N":
-            rover.classList.add("rotate-180");
-        break
-        case "W":
-            rover.classList.add("rotate-90");
-        break
-        case "E":
-            rover.classList.add("-rotate-90");
-        break
-
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
+    var direction = "S";
+    var newPos = [1,1];
+
+    function moveRover(newPos, actualPos){
+        actualPos = document.getElementById(actualPos.join(','));
+        newPos = document.getElementById(newPos.join(','));
+        
+        let rover = actualPos.innerHTML;
+        
+        if(!newPos.classList.contains("obstacle")){
+            actualPos.innerHTML = "";
+            newPos.innerHTML = rover;
+            rotateRover();
+            return newPos.id.split(',');
+        }else{
+            alert("Secuencia abortada obstaculo en frente!");
+        }
+    }
+
+    function rotateRover(){
+        document.getElementById('rover').setAttribute('class', '');
+        switch (direction){
+            case "N":
+                rover.classList.add("rotate-180");
+            break
+            case "W":
+                rover.classList.add("rotate-90");
+            break
+            case "E":
+                rover.classList.add("-rotate-90");
+            break
+
+        }
+    }
+
     document.getElementById('send').addEventListener('click', function(e) {
         e.preventDefault();
         let rover = document.getElementById('rover');
@@ -41,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var actualPos = document.getElementById('rover').parentElement.id.split(',');
         
-        console.log(actualPos);
         
         // Process each indication (N = North, S = South, E = East, W = West)
         indications.forEach((indication) => {
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     break;
             }
-            
             actualPos = moveRover(newPos, actualPos);            
         });
 
