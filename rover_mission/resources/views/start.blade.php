@@ -55,26 +55,33 @@
                             <input type="button" value="Enviar indicaciones" id="send" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
                             <a href="{{ url('/') }}" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">Reset</a>
                         </form>
+                        
                         <div class="overflow-x-auto overflow-y-auto max-h-96 max-w-full">
                             <table class="border-collapse table-auto">
+                                <th class='sticky top-0 left-0 min-w-[50px] h-[50px] bg-gray-200 border border-white text-center font-bold text-[16px]'></th>
                                 <?php
                                     for ($col = 1; $col <= 200; $col++) {
+                                        echo "<th  class='sticky top-0 bg-gray-200 p-2 border text-center min-w-[50px]'>".$col."</th>";
+                                    }
+                                    echo "<tr></tr>";  
+                                    for ($col = 1; $col <= 200; $col++) {
                                         echo "<tr>";
-                                        for ($row = 1; $row <= 200; $row++) {
-                                            if([$y,$x] == [$col,$row]){
-                                                echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'>";
-                                                echo "<p id='rover' class=''>V</p>";
-                                                echo "</td>";
-                                            }else{
-                                                if(rand(1,200) < 20){
-                                                    echo "<td class='obstacle min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'>";
-                                                    echo "<p>X</p>";
+                                            echo "<td class='sticky left-0 min-w-[50px] h-[50px] bg-gray-200 border border-white text-center font-bold text-[16px]'>".$col."</td>";
+                                            for ($row = 1; $row <= 200; $row++) {
+                                                if([$y,$x] == [$col,$row]){
+                                                    echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'>";
+                                                    echo "<p id='rover' class=''>V</p>";
                                                     echo "</td>";
                                                 }else{
-                                                    echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'></td>";
+                                                    if(rand(1,200) < 20){
+                                                        echo "<td class='obstacle min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'>";
+                                                        echo "<p>X</p>";
+                                                        echo "</td>";
+                                                    }else{
+                                                        echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$col.",".$row."'></td>";
+                                                    }
                                                 }
                                             }
-                                        }
                                         echo "</tr>";
                                     }
                                 ?>

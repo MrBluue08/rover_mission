@@ -2,21 +2,31 @@ document.addEventListener('DOMContentLoaded', function () {
     var direction = "S";
     var newPos = [1,1];
 
-    function moveRover(newPos, actualPos){
-        actualPos = document.getElementById(actualPos.join(','));
-        newPos = document.getElementById(newPos.join(','));
-        
-        let rover = actualPos.innerHTML;
-        
-        if(!newPos.classList.contains("obstacle")){
-            actualPos.innerHTML = "";
-            newPos.innerHTML = rover;
-            rotateRover();
-            return newPos.id.split(',');
-        }else{
-            alert("Secuencia abortada obstaculo en frente!");
+    function moveRover(newPos, actualPos) {
+        try {
+            actualPos = document.getElementById(actualPos.join(','));
+            newPos = document.getElementById(newPos.join(','));
+    
+            if (!actualPos || !newPos) {
+                throw new Error("Invalid coordinates: One or both positions do not exist.");
+            }
+    
+            let rover = actualPos.innerHTML;
+    
+            if (!newPos.classList.contains("obstacle")) {
+                actualPos.innerHTML = "";
+                newPos.innerHTML = rover;
+                rotateRover();
+                return newPos.id.split(',');
+            } else {
+                alert("Secuencia abortada: ¡obstáculo en frente!");
+            }
+        } catch (error) {
+            console.error(error.message);
+            alert("Secuencia abortada. ¡Borde del planeta!");
         }
     }
+    
 
     function rotateRover(){
         document.getElementById('rover').setAttribute('class', '');
@@ -36,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('send').addEventListener('click', function(e) {
         e.preventDefault();
-        let rover = document.getElementById('rover');
         var indications = document.getElementById('indications').value.trim();
+        indications = indications.toUpperCase();
         indications = indications.split(""); // Convert string into array of directions
 
         var actualPos = document.getElementById('rover').parentElement.id.split(',');
