@@ -19,13 +19,13 @@
                     <input type="text" class="border border-black p-2 rounded mr-4">
                     <input type="submit" value="Enviar indicaciones" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
                 </form>
-                <div class="overflow-x-auto overflow-y-auto max-h-96 w-full">
+                <div class="overflow-x-auto overflow-y-auto max-h-96 w-full transform transition-transform">
                     <table class="border-collapse table-auto">
                         <?php
                             for ($row = 1; $row <= 200; $row++) {
                                 echo "<tr>";
                                 for ($col = 1; $col <= 200; $col++) {
-                                    echo "<td class='w-1.5 h-1.5 bg-red-400 border border-white'></td>";
+                                    echo "<td class='w-2 h-2 bg-red-400 border border-white'></td>";
                                 }
                                 echo "</tr>";
                             }
