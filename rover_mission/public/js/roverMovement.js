@@ -1,16 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var direction = "S";
+    var direction = document.getElementById("direction").value;
+    rotateRover();
     var newPos = [1,1];
 
     function moveRover(newPos, actualPos) {
         try {
             actualPos = document.getElementById(actualPos.join(','));
             newPos = document.getElementById(newPos.join(','));
-    
-            if (!actualPos || !newPos) {
-                throw new Error("Invalid coordinates: One or both positions do not exist.");
-            }
-    
             let rover = actualPos.innerHTML;
     
             if (!newPos.classList.contains("obstacle")) {
