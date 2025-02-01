@@ -18,7 +18,6 @@
                 <form id="moveForm" class="mb-8">
                     <input type="text" class="border border-black p-2 rounded mr-4" id="indications">
                     <input type="button" value="Enviar indicaciones" id="send" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
-                    <input type="hidden" id="actualPos" value='1,1'>
                 </form>
                 <div class="overflow-x-auto overflow-y-auto max-h-96 max-w-full">
                     <table class="border-collapse table-auto">
@@ -27,12 +26,15 @@
                                 echo "<tr>";
                                 for ($x = 1; $x <= 200; $x++) {
                                     if([$y,$x] == [1,1]){
-                                        echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>V</td>";
+                                        echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>";
+                                        echo "<p id='rover'>V</p>";
+                                        echo "</td>";
                                     }else{
                                         if(rand(1,200) < 25){
                                             echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'>X</td>";
+                                        }else{
+                                            echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'></td>";
                                         }
-                                        echo "<td class='min-w-[50px] h-[50px] bg-red-500 border border-white text-center font-bold text-[20px]' id='".$y.",".$x."'></td>";
                                     }
                                 }
                                 echo "</tr>";

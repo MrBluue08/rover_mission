@@ -1,25 +1,47 @@
 var direction = "S";
 var newPos = [1,1];
+var actualPos = [1,1];
 
-function changePos(newPos, actualPos){
+function moveRover(newPos, actualPos){
     actualPos = document.getElementById(actualPos.join(','));
     newPos = document.getElementById(newPos.join(','));
     
-    rover = actualPos.innerHTML;
+    let rover = actualPos.innerHTML;
     
     actualPos.innerHTML = "";
+    
     newPos.innerHTML = rover;
     
+    rotateRover();
     return newPos.id.split(',');
+}
+
+function rotateRover(){
+    rover.setAttribute('class', '')
+    switch (direction){
+        case "N":
+            rover.classList.add("rotate-180");
+        break
+        case "W":
+            rover.classList.add("rotate-90");
+        break
+        case "E":
+            rover.classList.add("-rotate-90");
+        break
+
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('send').addEventListener('click', function(e) {
         e.preventDefault();
+        let rover = document.getElementById('rover');
         var indications = document.getElementById('indications').value.trim();
         indications = indications.split(""); // Convert string into array of directions
 
-        var actualPos = document.getElementById('actualPos').value.split(",");
+        var actualPos = document.getElementById('rover').parentElement.id.split(',');
+        
+        console.log(actualPos);
         
         // Process each indication (N = North, S = South, E = East, W = West)
         indications.forEach((indication) => {
@@ -94,13 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     break;
             }
-            actualPos = changePos(newPos, actualPos);
+            
+            actualPos = moveRover(newPos, actualPos);            
         });
 
-        // Update the hidden input field to reflect the latest position
-        document.getElementById('actualPos').value = newPos.join(',');
-        
+        // Update the hidden input field to reflect the latest position        
         document.getElementById('indications').value="";
-        console.log(newPos, actualPos, direction);
     });
 });
