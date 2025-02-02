@@ -54,6 +54,7 @@
                             <input type="text" class="border border-black p-2 rounded mr-4" id="indications">
                             <input type="button" value="Enviar indicaciones" id="send" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
                             <input type="hidden" id="direction" value="{{$direction}}">
+                            <input type="hidden" id="startPos" value="{{$y}},{{$x}}">
                             <a href="{{ url('/') }}" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">Reset</a>
                         </form>
                         <h5 class="font-bold">Current position</h5>

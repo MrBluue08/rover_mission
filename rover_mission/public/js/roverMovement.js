@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var rovertPos = document.getElementById("rover").parentElement.id;
     currentPos.innerHTML = rovertPos;
     rotateRover();
-    var newPos = [1,1];
+    var newPos = document.getElementById('startPos').value.split(',');
 
     function moveRover(newPos, actualPos) {
         try {
@@ -12,9 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             destination = newPos;
             newPos = document.getElementById(newPos.join(','));
             let rover = actualPos.innerHTML;
-            
-            console.log(destination);
-            
+                    
             if (!newPos.classList.contains("obstacle")) {
                 actualPos.innerHTML = "";
                 newPos.innerHTML = rover;
@@ -47,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('send').addEventListener('click', function(e) {
+        var validIndications = true;
         e.preventDefault();
         var indications = document.getElementById('indications').value.trim();
         indications = indications.toUpperCase();
@@ -63,21 +62,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         case "N":
                             newPos[0] = parseInt(actualPos[0])-1;
                             newPos[1] = parseInt(actualPos[1]);
+                            actualPos = moveRover(newPos, actualPos);      
                         break
                         case "S":
                             newPos[0] = parseInt(actualPos[0])+1;
                             newPos[1] = parseInt(actualPos[1]);
+                            actualPos = moveRover(newPos, actualPos);  
                         break
                         case "E":
                             newPos[0] = parseInt(actualPos[0]);
                             newPos[1] = parseInt(actualPos[1])+1;
+                            actualPos = moveRover(newPos, actualPos);  
                         break 
                         case "W":
                             newPos[0] = parseInt(actualPos[0]);
                             newPos[1] = parseInt(actualPos[1])-1;
                         break
                     }
-                    break;
+                break;
                 case 'L': // Move Left
                     switch (direction) {
                         case "N":
@@ -101,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             direction = "S";
                         break
                     }
-                    break;
+                break;
                 case 'R': // Move Right
                     switch (direction) {
                         case "N":
@@ -125,11 +127,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             direction = "N";
                         break
                     }
-                    break;
+                break;
+                default:
+                    validIndications = false;
+                    alert("Indicacion "+indication+" no valida.");
+                    return;
             }
             //Each indication is relative to the direction the rover is looking at the moment
-            actualPos = moveRover(newPos, actualPos);            
-            currentPos.innerHTML = actualPos;
+            currentPos.innerHTML = actualPos;      
         });
         document.getElementById('indications').value="";
     });
