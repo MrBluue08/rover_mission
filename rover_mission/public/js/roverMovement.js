@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     var direction = document.getElementById("direction").value;
+    var currentPos = document.getElementById("currentPos");
+    var rovertPos = document.getElementById("rover").parentElement.id;
+    currentPos.innerHTML = rovertPos;
     rotateRover();
     var newPos = [1,1];
 
@@ -126,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
             }
             actualPos = moveRover(newPos, actualPos);            
+            currentPos.innerHTML = actualPos;
         });
 
         // Update the hidden input field to reflect the latest position        

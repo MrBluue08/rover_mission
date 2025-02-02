@@ -56,7 +56,8 @@
                             <input type="hidden" id="direction" value="{{$direction}}">
                             <a href="{{ url('/') }}" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">Reset</a>
                         </form>
-                        
+                        <h5 class="font-bold">Current position</h5>
+                        <h5 id="currentPos"></h5>
                         <div class="overflow-x-auto overflow-y-auto max-h-96 max-w-full">
                             <table class="border-collapse table-auto">
                                 <th class='sticky top-0 left-0 min-w-[50px] h-[50px] bg-gray-200 border border-white text-center font-bold text-[16px]'></th>
