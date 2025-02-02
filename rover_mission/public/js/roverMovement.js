@@ -50,14 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         var indications = document.getElementById('indications').value.trim();
         indications = indications.toUpperCase();
-        indications = indications.split(""); // Convert string into array of directions
+        indications = indications.split("");
 
         var actualPos = document.getElementById('rover').parentElement.id.split(',');
         
         
-        // Process each indication (N = North, S = South, E = East, W = West)
+        // Process each indication (F = Front, L = Left, R = Right)
         indications.forEach((indication) => {
-            console.log(indication);
             switch (indication) {
                 case 'F': // Move Front
                     switch (direction) {
@@ -128,11 +127,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     break;
             }
+            //Each indication is relative to the direction the rover is looking at the moment
             actualPos = moveRover(newPos, actualPos);            
             currentPos.innerHTML = actualPos;
         });
-
-        // Update the hidden input field to reflect the latest position        
         document.getElementById('indications').value="";
     });
 });
